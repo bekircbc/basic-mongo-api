@@ -13,3 +13,5 @@ const book = new Book({
 await book.save();
 console.log("imported completed");
 process.exit(1);
+
+//for adding data to mongoose schreib //npm run import//
