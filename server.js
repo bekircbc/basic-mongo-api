@@ -12,17 +12,27 @@ app.get("/", (req, res) => {
   // console.log(req.url);
 });
 
+//sending data to bookapi
+
+// app.post("/book", async (req, res) => {
+//   const book = new Book({
+//     title: "ttt",
+//     description: "ddd",
+//     numberOfPages: 999,
+//   });
+//   await book.save();
+//   console.log("book created: " + new Date());
+//   res.status(200).json({
+//     message: "book was created",
+//   });
+// });
+
+//posting data
+
 app.post("/book", async (req, res) => {
-  const book = new Book({
-    title: "ttt",
-    description: "ddd",
-    numberOfPages: 999,
-  });
+  const book = new Book(req.body);
   await book.save();
-  console.log("book created: " + new Date());
-  res.status(200).json({
-    message: "book was created",
-  });
+  res.status(200).json({ message: "added book", book });
 });
 
 app.listen(port, () => {
