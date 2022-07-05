@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import { Book } from "./models/Books.js";
 
 mongoose.connect("mongodb://localhost/bookapi");
 
@@ -11,7 +12,14 @@ app.get("/", (req, res) => {
   // console.log(req.url);
 });
 
-app.get("/book", (req, res) => {
+app.post("/book", async (req, res) => {
+  const book = new Book({
+    title: "ttt",
+    description: "ddd",
+    numberOfPages: 999,
+  });
+  await book.save();
+  console.log("book created: " + new Date());
   res.status(200).json({
     message: "book was created",
   });
