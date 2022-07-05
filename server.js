@@ -48,15 +48,43 @@ app.get("/book", async (req, res) => {
 
 app.get("/book/:id", async (req, res) => {
   const id = req.params.id;
-  const book = await Book.findOne({ id });
+  const book = await Book.find({ _id: id });
+
   res.status(200).json({ message: "fetched book with id " + id, book });
 });
 
 //putting data
 
+app.put("/book/:id", async (req, res) => {
+  const id = req.params.id;
+  const oldBook = await Book.find({ _id: id });
+  await Book.updateOne({ _id: id }, { $set: { ...req.body } });
+  const newBook = await Book.find({ _id: id });
+  res
+    .status(200)
+    .json({ message: "replaced book with id = " + id, oldBook, newBook });
+});
+
 //patching data from
 
+app.patch("/book/:id", async (req, res) => {
+  const id = req.params.id;
+  const oldBook = await Book.find({ _id: id });
+  await Book.updateOne({ _id: id }, { $set: { ...req.body } });
+  const newBook = await Book.find({ _id: id });
+  res
+    .status(200)
+    .json({ message: "patched book with id = " + id, oldBook, newBook });
+});
+
 //deleting data from
+
+app.delete("/book/:id", async (req, res) => {
+  const id = req.params.id;
+  const book = await Book.find({ _id: id });
+  await Book.deleteOne({ _id: id });
+  res.status(200).json({ message: "deleted book with id = " + id, book });
+});
 
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
