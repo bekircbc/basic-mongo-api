@@ -11,6 +11,12 @@ app.get("/", (req, res) => {
   // console.log(req.url);
 });
 
+app.get("/book", (req, res) => {
+  res.status(200).json({
+    message: "book was created",
+  });
+});
+
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
 });
