@@ -5,6 +5,8 @@ import { Book } from "./models/Book.js";
 const app = express();
 const port = 3025;
 
+app.use(express.json());
+
 mongoose.connect("mongodb://localhost/bookapi");
 
 app.get("/", (req, res) => {
