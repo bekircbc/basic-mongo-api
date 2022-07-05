@@ -37,6 +37,27 @@ app.post("/book", async (req, res) => {
   res.status(200).json({ message: "added book", book });
 });
 
+//getting books data
+
+app.get("/book", async (req, res) => {
+  const books = await Book.find();
+  res.status(200).json({ message: "fetched all books", books });
+});
+
+//getting a book with id
+
+app.get("/book/:id", async (req, res) => {
+  const id = req.params.id;
+  const book = await Book.findOne({ id });
+  res.status(200).json({ message: "fetched book with id " + id, book });
+});
+
+//putting data
+
+//patching data from
+
+//deleting data from
+
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
 });
