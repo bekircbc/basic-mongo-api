@@ -1,11 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-import { Book } from "./models/Books.js";
-
-mongoose.connect("mongodb://localhost/bookapi");
+import { Book } from "./models/Book.js";
 
 const app = express();
-const port = 3678;
+const port = 3025;
+
+mongoose.connect("mongodb://localhost/bookapi");
 
 app.get("/", (req, res) => {
   res.send("<h1>Book API</h1>");
