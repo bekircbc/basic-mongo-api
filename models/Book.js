@@ -5,7 +5,6 @@ const bookSchema = new mongoose.Schema({
   description: String,
   numberOfPages: Number,
   language: String,
-  imageUrl: String,
   buyUrl: String,
 });
 

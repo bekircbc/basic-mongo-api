@@ -6,7 +6,7 @@ mongoose.connect("mongodb://localhost/bookapi");
 
 console.log("connected to mongoose");
 
-const url = "https://edwardtanguay.netlify.app/share/books.json";
+const url = "https://apis-for-beginner.bscebeci.de/api/books";
 
 //für importing book data to mongo
 
@@ -28,7 +28,6 @@ for (const rawBook of rawBooks) {
     description: rawBook.description,
     numberOfPages: Number(rawBook.totalpages),
     language: rawBook.language,
-    imageUrl: `http://edwardtanguay.netlify.app/share/images/books/${rawBook.idcode}.png`,
     buyUrl: rawBook.buyUrl,
   });
   await book.save();
